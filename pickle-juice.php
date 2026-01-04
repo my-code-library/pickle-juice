@@ -15,5 +15,3 @@ if (!defined('ABSPATH')) {
 
 // Include the module loader
 require_once plugin_dir_path(__FILE__) . 'includes/module-loader.php';
-
-
