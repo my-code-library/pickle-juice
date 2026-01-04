@@ -51,30 +51,32 @@ class PJ_Settings_Page {
             'pj-settings'
         );
 
-        // Field: Site Key
-        add_settings_field(
-            'pj_turnstile_site_key',
-            'Turnstile Site Key',
-            function() {
-                $value = esc_attr(get_option('pj_turnstile_site_key', ''));
-                echo '<input type="text" name="pj_turnstile_site_key" value="' . $value . '" class="regular-text" />';
-            },
-            'pj-settings',
-            'pj_turnstile_section'
-        );
+// Field: Site Key
+add_settings_field(
+    'pj_turnstile_site_key',
+    'Turnstile Site Key',
+    function() {
+        $value = esc_attr(get_option('pj_turnstile_site_key', ''));
+        echo '<input type="password" id="pj_turnstile_site_key" name="pj_turnstile_site_key" value="' . $value . '" class="regular-text" />';
+        echo '<button type="button" class="button pj-toggle-key" data-target="pj_turnstile_site_key">Show</button>';
+    },
+    'pj-settings',
+    'pj_turnstile_section'
+);
 
-        // Field: Secret Key
-        add_settings_field(
-            'pj_turnstile_secret_key',
-            'Turnstile Secret Key',
-            function() {
-                $value = esc_attr(get_option('pj_turnstile_secret_key', ''));
-                echo '<input type="text" name="pj_turnstile_secret_key" value="' . $value . '" class="regular-text" />';
-            },
-            'pj-settings',
-            'pj_turnstile_section'
-        );
-    }
+// Field: Secret Key
+add_settings_field(
+    'pj_turnstile_secret_key',
+    'Turnstile Secret Key',
+    function() {
+        $value = esc_attr(get_option('pj_turnstile_secret_key', ''));
+        echo '<input type="password" id="pj_turnstile_secret_key" name="pj_turnstile_secret_key" value="' . $value . '" class="regular-text" />';
+        echo '<button type="button" class="button pj-toggle-key" data-target="pj_turnstile_secret_key">Show</button>';
+    },
+    'pj-settings',
+    'pj_turnstile_section'
+);
+
 
     /**
      * Render the settings page
