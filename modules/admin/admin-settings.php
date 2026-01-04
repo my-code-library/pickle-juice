@@ -94,6 +94,23 @@ add_settings_field(
                 ?>
             </form>
         </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.pj-toggle-key').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const target = document.getElementById(this.dataset.target);
+            if (target.type === 'password') {
+                target.type = 'text';
+                this.textContent = 'Hide';
+            } else {
+                target.type = 'password';
+                this.textContent = 'Show';
+            }
+        });
+    });
+});
+</script>
+
         <?php
     }
 }
