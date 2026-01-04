@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) exit;
  */
 
 add_action('wp_head', function() {
-	$code = <<<TRACKERS
+$code = <<<TRACKERS
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9VQJBKBVF"></script>
 <script>
@@ -29,4 +29,4 @@ TRACKERS;
     if (!is_user_logged_in()) {
         echo $code;
     }
-});
+} );
