@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Pickle Juice
- * Description: Email only registration-login, Google & Microsoft analytics/webmaster tools, custom login branding, Cloudflare Turnstile support
+ * Description: Email only (no usernames) registration-login, Google & Microsoft analytics/webmaster tools, custom login page, Cloudflare Turnstile support, magic login link support
  * Author: Pickle Juice
- * Version: 1.0.5
+ * Version: 1.0.6
  * Text Domain: pickle-juice
  * Domain Path: /languages
  */
@@ -15,4 +15,5 @@ if (!defined('ABSPATH')) {
 
 // Include the module loader
 require_once plugin_dir_path(__FILE__) . 'includes/module-loader.php';
+
 
