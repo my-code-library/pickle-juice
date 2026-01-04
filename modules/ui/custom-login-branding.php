@@ -27,8 +27,8 @@ add_action('login_enqueue_scripts', function() {
             height: 120px !important;
             border-radius: 100%;
         }
-        body.login form {
-            width: 400px;
+        body.login div#login {
+            width: 475px;
         }
     </style>';
 });
