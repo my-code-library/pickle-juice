@@ -16,9 +16,12 @@ define('PJ_TURNSTILE_LOADED', true);
  */
 
 // Your Turnstile keys (admin settings)
-$keys = pj_get_turnstile_keys();
-$turnstile_site_key   = $keys['site'];
-$turnstile_secret_key = $keys['secret'];
+$turnstile_site_key   = get_option('pj_turnstile_site_key', '');
+$turnstile_secret_key = get_option('pj_turnstile_secret_key', '');
+
+if (empty($turnstile_site_key)) return;
+
+if (empty($turnstile_secret_key)) return $user;
 
 // 1. Inject Turnstile widget into login + registration forms
 add_action('login_form', 'pj_turnstile_render');
