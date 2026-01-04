@@ -25,6 +25,7 @@ add_action('login_enqueue_scripts', function() {
             background-size: contain !important;
             width: 240px !important;
             height: 120px !important;
+            border-radius: 100%;
         }
     </style>';
 });
