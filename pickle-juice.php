@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Pickle Juice
- * Description: Email only login, Google/Microsoft analytics/webmaster tools, custom login branding,
+ * Description: Email only registration-login, Google & Microsoft analytics/webmaster tools, custom login branding,
  * Author: Pickle Juice
  * Version: 1.0.3
  * Text Domain: pickle-juice
