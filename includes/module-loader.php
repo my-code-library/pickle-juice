@@ -12,12 +12,12 @@ class PJ_Module_Loader {
 
         $modules = [
 		// Add modules here
-            'auth/email-only-registration.php',
+            'admin/admin-settings.php',
+			'auth/email-only-registration.php',
 			'auth/email-only-auth.php',
 			'security/turnstile.php',
 			'trackers/analytics.php',
 			'ui/custom-login-branding.php',
-			'admin/admin-settings.php',
         ];
 
         foreach ($modules as $module) {
@@ -32,5 +32,6 @@ class PJ_Module_Loader {
 
 
 add_action('plugins_loaded', ['PJ_Module_Loader', 'load']);
+
 
 
