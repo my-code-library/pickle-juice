@@ -2,8 +2,8 @@
 if (!defined('ABSPATH')) exit;
 
 // Prevent double-loading even if something else includes this file.
-if (defined('PJ_EMAIL_ONLY_LOGIN_LOADED')) return;
-define('PJ_EMAIL_ONLY_LOGIN_LOADED', true);
+if (defined('PJ_EMAIL_ONLY_REGISTRATION_LOADED')) return;
+define('PJ_EMAIL_ONLY_REGISTRATION_LOADED', true);
 
 /**
  * Email-only registration (no username field shown to user).
@@ -70,3 +70,4 @@ add_filter('pre_user_login', function($login) {
     // Fallback if somehow no email is present.
     return 'user_' . wp_generate_password(8, false);
 });
+
