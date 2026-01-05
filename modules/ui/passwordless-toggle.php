@@ -19,25 +19,30 @@ add_action('login_form', function() {
     echo '<script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        function removePasswordElements() {
+        function removePasswordField() {
             const passField = document.getElementById("user_pass");
-            if (passField && passField.closest("p")) {
-                passField.closest("p").style.display = "none";
-            }
-
-            const loginBtn = document.getElementById("wp-submit");
-            if (loginBtn) {
-                loginBtn.style.display = "none";
+            if (passField) {
+                const wrapper = passField.closest("p");
+                if (wrapper) wrapper.remove();
             }
         }
 
+        function removeLoginButton() {
+            const loginBtn = document.getElementById("wp-submit");
+            if (loginBtn) loginBtn.remove();
+        }
+
         // Run immediately
-        removePasswordElements();
+        removePasswordField();
+        removeLoginButton();
 
-        // Run again whenever the DOM changes (Turnstile injects elements late)
-        const observer = new MutationObserver(removePasswordElements);
+        // Watch for late‑loaded elements
+        const observer = new MutationObserver(() => {
+            removePasswordField();
+            removeLoginButton();
+        });
+
         observer.observe(document.body, { childList: true, subtree: true });
-
     });
     </script>';
 
@@ -45,6 +50,7 @@ add_action('login_form', function() {
         Password login is disabled. Use the magic link button below.
     </p>';
 });
+
 
 
 add_filter('authenticate', function($user, $username, $password) {
