@@ -16,45 +16,35 @@ define('PJ_CUSTOM_LOGIN_LOADED', true);
  *
  */
 
+// Flush rewrite rules when slug changes
+add_action('update_option_pj_custom_login_slug', function() {
+    flush_rewrite_rules();
+});
+
+// Register rewrite rule
+add_action('init', function() {
+    $slug = trim(get_option('pj_custom_login_slug', ''), '/');
+    if (!$slug) return;
+
+    add_rewrite_rule("^{$slug}/?$", 'wp-login.php', 'top');
+});
+
+// Redirect logic
 add_action('login_init', function() {
 
     $slug = trim(get_option('pj_custom_login_slug', ''), '/');
-
-    // If slug is empty, disable the entire module
-    if (!$slug) {
-        return;
-    }
+    if (!$slug) return;
 
     $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-    // If user is already on the custom login URL, allow
-    if ($request_uri === $slug) {
-        return;
-    }
+    if ($request_uri === $slug) return;
+    if (isset($_GET['pj_magic'])) return;
+    if (isset($_GET['action']) && in_array($_GET['action'], ['rp','resetpass'], true)) return;
+    if (!empty($_POST['log']) || !empty($_POST['pj_magic_request'])) return;
 
-    // Allow magic links
-    if (isset($_GET['pj_magic'])) {
-        return;
-    }
+    $requested_file = basename($request_uri);
+    if ($requested_file !== 'wp-login.php') return;
 
-    // Allow password reset flows
-    if (isset($_GET['action']) && in_array($_GET['action'], ['rp', 'resetpass'], true)) {
-        return;
-    }
-
-    // Allow login POST
-    if (!empty($_POST['log']) || !empty($_POST['pj_magic_request'])) {
-        return;
-    }
-
-    // Only redirect if the internal script is wp-login.php
-    $script = basename($_SERVER['SCRIPT_NAME']);
-    if ($script !== 'wp-login.php') {
-        return;
-    }
-
-    // Redirect to custom login URL
     wp_redirect(home_url("/{$slug}/"));
     exit;
 });
-
