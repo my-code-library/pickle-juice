@@ -15,7 +15,7 @@ add_action('login_form', function() {
 
     // Magic link button
     ?>
-    <p style="margin-top:20px;">
+    <p style="margin:20px 0;">
         <button type="submit" name="pj_magic_request" value="1" class="button button-primary" style="width:100%;">
             Send me a magic login link
         </button>
