@@ -18,7 +18,7 @@ class PJ_Module_Loader {
 			'security/turnstile.php',
 			'trackers/analytics.php',
 			'ui/custom-login-branding.php',
-			'auth/secure-login-links.php',
+			'auth/magic-links.php',
 
         ];
 
@@ -34,6 +34,7 @@ class PJ_Module_Loader {
 
 
 add_action('plugins_loaded', ['PJ_Module_Loader', 'load']);
+
 
 
 
