@@ -32,6 +32,7 @@ add_action('login_head', function() {
 });
 
 // 2. Handle magic link request
+// 2. Handle magic link request
 add_action('login_form_login', function() {
 
     if (!isset($_POST['pj_magic_request'])) {
@@ -82,7 +83,34 @@ add_action('login_form_login', function() {
         wp_die('No account found with that email address.');
     }
 
-    // Generate token
+    // --- Rate limiting ---
+    $last_request = intval(get_user_meta($user->ID, 'pj_magic_last_request', true));
+    $request_count = intval(get_user_meta($user->ID, 'pj_magic_request_count', true));
+    $now = time();
+
+    // Reset hourly counter if needed
+    if ($now - $last_request > 3600) {
+        $request_count = 0;
+    }
+
+    // Enforce limits
+    $per_minute_limit = 60;   // 1 request per minute
+    $per_hour_limit   = 5;    // 5 requests per hour
+
+    if ($now - $last_request < $per_minute_limit) {
+        wp_die('You must wait before requesting another magic link.');
+    }
+
+    if ($request_count >= $per_hour_limit) {
+        wp_die('You have requested too many magic links. Try again later.');
+    }
+
+    // Update counters
+    update_user_meta($user->ID, 'pj_magic_last_request', $now);
+    update_user_meta($user->ID, 'pj_magic_request_count', $request_count + 1);
+    // --- End rate limiting ---
+
+    // Generate token *after* rate limiting
     $token = wp_generate_password(32, false);
     $expires = time() + 600; // 10 minutes
 
