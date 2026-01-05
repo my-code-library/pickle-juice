@@ -37,9 +37,9 @@ add_action('login_form', function() {
     });
     </script>';
 
-    echo '<p style="margin-top:10px; font-weight:bold;">
-        Password login is disabled. Use the magic link button above.
-    </p>';
+//    echo '<p style="margin-top:10px; font-weight:bold;">
+//        Password login is disabled. Use the magic link button above.
+//    </p>';
 });
 
 
