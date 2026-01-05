@@ -30,3 +30,23 @@ add_action('login_form', function() {
         Password login is disabled. Use the magic link button below.
     </p>';
 });
+
+add_filter('authenticate', function($user, $username, $password) {
+
+    $disabled = get_option('pj_disable_password_login', '0');
+
+    if ($disabled !== '1') {
+        return $user; // Password login allowed
+    }
+
+    // If user tries to log in with a password, block it
+    if (!empty($password)) {
+        return new WP_Error(
+            'password_disabled',
+            __('Password login is disabled. Please use a magic link.')
+        );
+    }
+
+    return $user;
+
+}, 5, 3);
