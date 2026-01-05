@@ -3,7 +3,7 @@
  * Plugin Name: Pickle Juice
  * Description: Email only (no usernames) registration and login, Google & Microsoft analytics/webmaster tools, custom login logo, Cloudflare Turnstile support, magic login link support
  * Author: Pickle Juice
- * Version: 1.0.9
+ * Version: 1.1.0
  * Text Domain: pickle-juice
  * Domain Path: /languages
  */
@@ -15,6 +15,7 @@ if (!defined('ABSPATH')) {
 
 // Include the module loader
 require_once plugin_dir_path(__FILE__) . 'includes/module-loader.php';
+
 
 
 
