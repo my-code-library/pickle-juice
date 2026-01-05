@@ -12,14 +12,26 @@ define('PJ_MAGIC_LINKS_LOADED', true);
 
 // 1. Add "Send Magic Link" button to login form
 add_action('login_form', function() {
+
+    // Render Turnstile widget (reuses your existing settings)
+    $site_key = get_option('pj_turnstile_site_key', '');
+    if (!empty($site_key)) {
+        echo '<div style="margin: 20px 0;">
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            <div class="cf-turnstile" data-sitekey="' . esc_attr($site_key) . '"></div>
+        </div>';
+    }
+
+    // Magic link button
     ?>
-    <div id="secure-link">
-        <button type="submit" name="pj_magic_request" value="1" class="button button-primary" style="margin: 20px 0;width: 100%;">
-            Send me a secure login link
+    <p style="margin-top:20px;">
+        <button type="submit" name="pj_magic_request" value="1" class="button button-primary" style="width:100%;">
+            Send me a magic login link
         </button>
-    </div>
+    </p>
     <?php
 });
+
 
 // 2. Handle magic link request
 add_action('login_form_login', function() {
