@@ -37,73 +37,73 @@ class PJ_Settings_Page {
             'pj-settings'
         );
 
-// Field: Site Key
-add_settings_field(
-    'pj_turnstile_site_key',
-    'Turnstile Site Key',
-    function() {
-        $value = esc_attr(get_option('pj_turnstile_site_key', ''));
-        echo '<input type="password" id="pj_turnstile_site_key" name="pj_turnstile_site_key" value="' . $value . '" class="regular-text" autocomplete="new-password" />';
-        echo ' <button type="button" class="button pj-toggle-key" data-target="pj_turnstile_site_key">Show</button>';
-    },
-    'pj-settings',
-    'pj_turnstile_section'
-);
-
-// Field: Secret Key
-add_settings_field(
-    'pj_turnstile_secret_key',
-    'Turnstile Secret Key',
-    function() {
-        $value = esc_attr(get_option('pj_turnstile_secret_key', ''));
-        echo '<input type="password" id="pj_turnstile_secret_key" name="pj_turnstile_secret_key" value="' . $value . '" class="regular-text" autocomplete="new-password" />';
-        echo ' <button type="button" class="button pj-toggle-key" data-target="pj_turnstile_secret_key">Show</button>';
-    },
-    'pj-settings',
-    'pj_turnstile_section'
-);
-
-// Register password login toggle
-register_setting('pj_settings_group', 'pj_disable_password_login');
-
-// Section: Passwordless Login
-add_settings_section(
-    'pj_passwordless_section',
-    'Passwordless Login',
-    function() {
-        echo '<p>Control whether users can log in with a password or only via magic link.</p>';
-    },
-    'pj-settings'
-);
-
-// Field: Disable Password Login
-add_settings_field(
-    'pj_disable_password_login',
-    'Disable Password Login',
-    function() {
-        $value = get_option('pj_disable_password_login', '0');
-        echo '<label>';
-        echo '<input type="checkbox" name="pj_disable_password_login" value="1" ' . checked($value, '1', false) . ' />';
-        echo ' Disable password login (magic link only)';
-        echo '</label>';
-    },
-    'pj-settings',
-    'pj_passwordless_section'
-);
-
-register_setting('pj_settings_group', 'pj_custom_login_slug');
-
-add_settings_field(
-    'pj_custom_login_slug',
-    'Custom Login URL',
-    function() {
-        $value = esc_attr(get_option('pj_custom_login_slug', ''));
-        echo '<input type="text" name="pj_custom_login_slug" value="' . $value . '" placeholder="login" />';
-        echo '<p class="description">Example: entering <strong>login</strong> makes your login URL <code>/login/</code></p>';
-    },
-    'pj-settings',
-    'pj_passwordless_section'
-);
+        // Field: Site Key
+        add_settings_field(
+            'pj_turnstile_site_key',
+            'Turnstile Site Key',
+            function() {
+                $value = esc_attr(get_option('pj_turnstile_site_key', ''));
+                echo '<input type="password" id="pj_turnstile_site_key" name="pj_turnstile_site_key" value="' . $value . '" class="regular-text" autocomplete="new-password" />';
+                echo ' <button type="button" class="button pj-toggle-key" data-target="pj_turnstile_site_key">Show</button>';
+            },
+            'pj-settings',
+            'pj_turnstile_section'
+        );
+        
+        // Field: Secret Key
+        add_settings_field(
+            'pj_turnstile_secret_key',
+            'Turnstile Secret Key',
+            function() {
+                $value = esc_attr(get_option('pj_turnstile_secret_key', ''));
+                echo '<input type="password" id="pj_turnstile_secret_key" name="pj_turnstile_secret_key" value="' . $value . '" class="regular-text" autocomplete="new-password" />';
+                echo ' <button type="button" class="button pj-toggle-key" data-target="pj_turnstile_secret_key">Show</button>';
+            },
+            'pj-settings',
+            'pj_turnstile_section'
+        );
+        
+        // Register password login toggle
+        register_setting('pj_settings_group', 'pj_disable_password_login');
+        
+        // Section: Passwordless Login
+        add_settings_section(
+            'pj_passwordless_section',
+            'Passwordless Login',
+            function() {
+                echo '<p>Control whether users can log in with a password or only via magic link.</p>';
+            },
+            'pj-settings'
+        );
+        
+        // Field: Disable Password Login
+        add_settings_field(
+            'pj_disable_password_login',
+            'Disable Password Login',
+            function() {
+                $value = get_option('pj_disable_password_login', '0');
+                echo '<label>';
+                echo '<input type="checkbox" name="pj_disable_password_login" value="1" ' . checked($value, '1', false) . ' />';
+                echo ' Disable password login (magic link only)';
+                echo '</label>';
+            },
+            'pj-settings',
+            'pj_passwordless_section'
+        );
+        
+        register_setting('pj_settings_group', 'pj_custom_login_slug');
+        
+        add_settings_field(
+            'pj_custom_login_slug',
+            'Custom Login URL',
+            function() {
+                $value = esc_attr(get_option('pj_custom_login_slug', ''));
+                echo '<input type="text" name="pj_custom_login_slug" value="' . $value . '" placeholder="login" />';
+                echo '<p class="description">Example: entering <strong>login</strong> makes your login URL <code>/login/</code></p>';
+            },
+            'pj-settings',
+            'pj_passwordless_section'
+        );
 
     }
 
