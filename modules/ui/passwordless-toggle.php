@@ -19,30 +19,21 @@ add_action('login_form', function() {
     echo '<script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        function removePasswordField() {
-            const passField = document.getElementById("user_pass");
-            if (passField) {
-                const wrapper = passField.closest("p");
-                if (wrapper) wrapper.remove();
-            }
-        }
+        function removePasswordBlock() {
+            const wrap = document.querySelector(".user-pass-wrap");
+            if (wrap) wrap.remove();
 
-        function removeLoginButton() {
             const loginBtn = document.getElementById("wp-submit");
             if (loginBtn) loginBtn.remove();
         }
 
         // Run immediately
-        removePasswordField();
-        removeLoginButton();
+        removePasswordBlock();
 
-        // Watch for late‑loaded elements
-        const observer = new MutationObserver(() => {
-            removePasswordField();
-            removeLoginButton();
-        });
-
+        // Watch for late DOM changes (WP or plugins may reinsert it)
+        const observer = new MutationObserver(removePasswordBlock);
         observer.observe(document.body, { childList: true, subtree: true });
+
     });
     </script>';
 
