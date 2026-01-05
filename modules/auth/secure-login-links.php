@@ -40,6 +40,38 @@ add_action('login_form_login', function() {
         return; // Not a magic link request
     }
 
+    // --- Turnstile validation ---
+    $secret = get_option('pj_turnstile_secret_key', '');
+
+    if (!empty($secret)) {
+
+        if (empty($_POST['cf-turnstile-response'])) {
+            wp_die('Please verify you are human.');
+        }
+
+        $response = sanitize_text_field($_POST['cf-turnstile-response']);
+
+        $verify = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+            'body' => [
+                'secret'   => $secret,
+                'response' => $response,
+                'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+            ]
+        ]);
+
+        if (is_wp_error($verify)) {
+            wp_die('Turnstile verification failed.');
+        }
+
+        $data = json_decode(wp_remote_retrieve_body($verify), true);
+
+        if (empty($data['success'])) {
+            wp_die('Turnstile verification failed.');
+        }
+    }
+    // --- End Turnstile validation ---
+
+    // Continue with magic link logic...
     $email = sanitize_email($_POST['log'] ?? '');
 
     if (empty($email) || !is_email($email)) {
@@ -75,6 +107,7 @@ add_action('login_form_login', function() {
 
     wp_die('A magic login link has been sent to your email.');
 });
+
 
 // 3. Process magic link login
 add_action('init', function() {
