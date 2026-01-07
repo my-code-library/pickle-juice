@@ -17,25 +17,31 @@ add_action('login_form', function() {
     }
 
     echo '<script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
 
-        function removePasswordBlock() {
-            const wrap = document.querySelector(".user-pass-wrap");
-            if (wrap) wrap.remove();
+    function removePasswordBlock() {
+        // Remove password field
+        const wrap = document.querySelector(".user-pass-wrap");
+        if (wrap) wrap.remove();
 
-            const loginBtn = document.getElementById("wp-submit");
-            if (loginBtn) loginBtn.remove();
-        }
+        // Remove login button
+        const loginBtn = document.getElementById("wp-submit");
+        if (loginBtn) loginBtn.remove();
 
-        // Run immediately
-        removePasswordBlock();
+        // Remove "Remember Me"
+        const remember = document.querySelector(".forgetmenot");
+        if (remember) remember.remove();
+    }
 
-        // Watch for late DOM changes (WP or plugins may reinsert it)
-        const observer = new MutationObserver(removePasswordBlock);
-        observer.observe(document.body, { childList: true, subtree: true });
+    // Run immediately
+    removePasswordBlock();
 
-    });
-    </script>';
+    // Watch for late DOM changes
+    const observer = new MutationObserver(removePasswordBlock);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+});
+</script>';
 
 //    echo '<p style="margin-top:10px; font-weight:bold;">
 //        Password login is disabled. Use the magic link button above.
