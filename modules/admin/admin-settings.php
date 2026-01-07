@@ -102,16 +102,14 @@ class PJ_Settings_Page {
 
         add_settings_field(
             'pj_enable_custom_login_url',
-            'Disable Custom Login URL',
+            'Enable Custom Login URL',
             function () {
                 $value = get_option('pj_enable_custom_login_url', 1);
         
                 echo '<label>';
                 echo '<input type="checkbox" id="pj_enable_custom_login_url" name="pj_enable_custom_login_url" value="1" ' . checked($value, 1, false) . ' />';
-                echo 'Disable the Custom Login URL module';
+                echo 'Enable the Custom Login URL module';
                 echo '</label>';
-        
-                echo '<p class="description">Disabling this will completely deactivate the custom login URL module and restore the default <code>wp-login.php</code> behavior.</p>';
             },
             'pj-settings',
             'pj_passwordless_section'
