@@ -12,11 +12,6 @@ define('PJ_MAGIC_LINKS_LOADED', true);
 
 // 1. Add "Send Magic Link" button to login form
 add_action('login_form', function() {
-
-    if (get_option('pj_disable_password_login') !== '1') {
-        return;
-    }
-
     echo '<p class="pj-magic-link-wrap">
         <button type="submit" name="pj_magic_request" value="1" class="button button-primary pj-magic-link-btn">
             Send me a magic login link
