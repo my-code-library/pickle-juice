@@ -116,8 +116,7 @@ class PJ_Settings_Page {
             'pj-settings',
             'pj_passwordless_section'
         );
-
-    }  
+ 
     register_setting('pj_settings_group', 'pj_custom_login_slug');
         
         add_settings_field(
@@ -135,7 +134,7 @@ class PJ_Settings_Page {
             'pj-settings',
             'pj_passwordless_section'
         );
-
+} 
     public static function render_page() {
         ?>
 <div class="wrap">
