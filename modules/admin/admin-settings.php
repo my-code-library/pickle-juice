@@ -108,7 +108,7 @@ class PJ_Settings_Page {
         
                 echo '<label>';
                 echo '<input type="checkbox" id="pj_enable_custom_login_url" name="pj_enable_custom_login_url" value="1" ' . checked($value, 1, false) . ' />';
-                echo ' Activate the Custom Login URL module';
+                echo ' Deactivate the Custom Login URL module';
                 echo '</label>';
         
                 echo '<p class="description">Disabling this will completely deactivate the custom login URL module and restore the default <code>wp-login.php</code> behavior.</p>';
@@ -124,7 +124,6 @@ class PJ_Settings_Page {
             'Custom Login URL',
             function () {
                 $value = get_option('pj_custom_login_slug', 'login');
-            
                 echo '<div id="pj_custom_login_slug_wrapper">';
                 echo '<input type="text" name="pj_custom_login_slug" value="' . esc_attr($value) . '" class="regular-text" />';
                 echo '<p class="description">This slug replaces wp-login.php. Example: /login</p>';
