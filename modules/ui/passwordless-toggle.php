@@ -12,7 +12,7 @@ define('PJ_PASSWORDLESS_TOGGLE_LOADED', true);
 
 add_action('login_form', function() {
 
-    if (get_option('pj_disable_password_login') !== '1') {
+   if ( get_option('pj_enable_magic_link_login', '1') ) {
         return;
     }
 
