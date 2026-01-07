@@ -133,16 +133,16 @@ class PJ_Settings_Page {
 
     public static function render_page() {
         ?>
-        <div class="wrap">
-            <h1></h1>
+<div class="wrap">
+<h1></h1>
 
-            <form method="post" action="options.php">
-                <?php
-                settings_fields('pj_settings_group');
-                do_settings_sections('pj-settings');
-                submit_button();
-                ?>
-            </form>
+<form method="post" action="options.php">
+        <?php
+        settings_fields('pj_settings_group');
+        do_settings_sections('pj-settings');
+        submit_button();
+        ?>
+</form>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.pj-toggle-key').forEach(function(button) {
