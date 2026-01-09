@@ -30,7 +30,7 @@ class PJ_Admin_Debranding {
             $custom = 'Powered by Pickle Juice';
         }
 
-        return esc_html($custom) . ' — WordPress ' . esc_html($version);
+        return esc_html($custom);
     }
 }
 
