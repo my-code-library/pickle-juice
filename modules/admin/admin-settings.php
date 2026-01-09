@@ -153,8 +153,22 @@ class PJ_Settings_Page {
             'pj-settings',
             'pj_passwordless_section'
         );
-
-
+        
+        register_setting('pj_settings_group', 'pj_custom_admin_footer_text');
+        
+        add_settings_field(
+            'pj_custom_admin_footer_text',
+            'Custom Footer Text',
+            function () {
+                $value = esc_attr(get_option('pj_custom_admin_footer_text', ''));
+        
+                echo '<input type="text" name="pj_custom_admin_footer_text" value="' . $value . '" class="regular-text" />';
+                echo '<p class="description">Example: “Powered by Pickle Juice”</p>';
+            },
+            'pj-settings',
+            'pj_passwordless_section'
+        );
+        
 } 
     public static function render_page() {
         ?>
