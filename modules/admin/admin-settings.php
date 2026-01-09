@@ -139,20 +139,21 @@ class PJ_Settings_Page {
         
         add_settings_field(
             'pj_disable_wp_org_menu',
-            'Disable WordPress.org Admin Bar Menu',
+            'Admin Bar & Footer Debranding',
             function () {
                 $value = get_option('pj_disable_wp_org_menu', 0);
         
                 echo '<label>';
                 echo '<input type="checkbox" id="pj_disable_wp_org_menu" name="pj_disable_wp_org_menu" value="1" ' . checked($value, 1, false) . ' />';
-                echo ' Hide WordPress.org links from the admin bar';
+                echo ' Remove WordPress.org admin bar menu and replace footer text';
                 echo '</label>';
         
-                echo '<p class="description">Removes the WordPress logo menu and its links from the top admin bar.</p>';
+                echo '<p class="description">Hides the WordPress logo menu and replaces the footer text while keeping the version number visible.</p>';
             },
             'pj-settings',
             'pj_passwordless_section'
         );
+
 
 } 
     public static function render_page() {
