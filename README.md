@@ -44,6 +44,11 @@ A modular, override-safe WordPress plugin designed for artists, creators, and de
 Pickle Juice uses a module loader that checks plugin settings and loads only the modules you’ve enabled. This keeps the plugin lightweight, predictable, and easy to extend.
 ```
 modules/
+  admin/
+  auth/
+  security/
+  trackers/
+  ui/
   
 ```
 
